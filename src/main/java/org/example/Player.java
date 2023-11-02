@@ -1,2 +1,4 @@
-package org.example;public class Player {
+package org.example;
+
+public class Player {
 }
