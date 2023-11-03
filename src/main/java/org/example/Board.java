@@ -61,6 +61,7 @@ public class Board {
                 return true;
             }
         }
+        System.out.println("  \u001B[41m\u001B[30m\t!! Diese Spalte ist schon voll. Versuchs nochmal. \u001B[0m");
         return false;
     }
 

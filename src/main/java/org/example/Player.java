@@ -48,10 +48,10 @@ public class Player {
                 if (chosenColumn >= 1 && chosenColumn <= 7) {
                     break;
                 } else {
-                    System.out.println("Ungültige Eingabe. Wähle eine Spalte 1-7: ");
+                    System.out.println("  \u001B[41m\u001B[30m\t!! Ungültige Eingabe. Wähle eine Spalte 1-7:  \u001B[0m");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Ungültige Eingabe. Wähle eine Spalte 1-7: ");
+                System.out.println("  \u001B[41m\u001B[30m\t!! Ungültige Eingabe. Wähle eine Spalte 1-7:  \u001B[0m");
                 sc.next(); // Leere die Eingabewarteschlange
             }
         }
