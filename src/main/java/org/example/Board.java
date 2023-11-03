@@ -4,10 +4,10 @@ public class Board {
 
     public int[][] layout;
     final private String[] colors   = {
-            "  \u001B[47m   \u001B[0m",  // white = default
-            "  \u001B[44m   \u001B[0m",  // blue
-            "  \u001B[43m   \u001B[0m",  // yellow
-            "  \u001B[41m   \u001B[0m"   // red = winning coins
+            "  \u001B[47m   \u001B[0m",  // white  = empty
+            "  \u001B[44m   \u001B[0m",  // blue   = player 1
+            "  \u001B[43m   \u001B[0m",  // yellow = player 2
+            "  \u001B[41m   \u001B[0m"   // red    = winning coins
     };
 
     private int currentPlayerId;
@@ -54,18 +54,17 @@ public class Board {
         return !containsEmptyFields;
     }
 
-    public void insertCoin(int currentPlayer, int idxColumn) {
+    public boolean insertCoin(int currentPlayer, int idxColumn) {
         for (int i = 5; i >= 0; i--) {
             if (layout[i][idxColumn] == 0) {
                 layout[i][idxColumn] = currentPlayer;
-                break;
+                return true;
             }
         }
+        return false;
     }
 
-
     public boolean checkIfWinner(int currentValue) {
-
 
         // vertikal |
         for (int i = 0; i < layout.length-3; i++) {

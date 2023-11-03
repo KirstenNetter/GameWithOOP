@@ -29,9 +29,14 @@ public class App
                 break;
             } else {
                 board.switchCurrentPlayerId();
-                selectedColumn = players[board.getCurrentPlayerId()].chooseColumn(sc);
-                board.insertCoin(players[board.getCurrentPlayerId()].getValue(), selectedColumn-1);
+
+                boolean coinInserted = false;
+                while (!coinInserted){
+                    selectedColumn = players[board.getCurrentPlayerId()].chooseColumn(sc);
+                    coinInserted = board.insertCoin(players[board.getCurrentPlayerId()].getValue(), selectedColumn-1);
+                }
                 board.displayBoard();
+
                 isWinner = board.checkIfWinner(players[board.getCurrentPlayerId()].getValue());
             }
         }
