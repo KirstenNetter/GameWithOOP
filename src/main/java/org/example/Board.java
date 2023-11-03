@@ -4,9 +4,10 @@ public class Board {
 
     public int[][] layout;
     final private String[] colors   = {
-            "  \u001B[47m   \u001B[0m",  // default
+            "  \u001B[47m   \u001B[0m",  // white = default
             "  \u001B[44m   \u001B[0m",  // blue
-            "  \u001B[43m   \u001B[0m"   // yellow
+            "  \u001B[43m   \u001B[0m",  // yellow
+            "  \u001B[41m   \u001B[0m"   // red = winning coins
     };
 
     private int currentPlayerId;
@@ -55,14 +56,16 @@ public class Board {
 
     public void insertCoin(int currentPlayer, int idxColumn) {
         for (int i = 5; i >= 0; i--) {
-            if (this.layout[i][idxColumn] == 0) {
-                this.layout[i][idxColumn] = currentPlayer;
+            if (layout[i][idxColumn] == 0) {
+                layout[i][idxColumn] = currentPlayer;
                 break;
             }
         }
     }
 
+
     public boolean checkIfWinner(int currentValue) {
+
 
         // vertikal |
         for (int i = 0; i < layout.length-3; i++) {
@@ -71,17 +74,27 @@ public class Board {
                         layout[i+1][j] == currentValue &&
                         layout[i+2][j] == currentValue &&
                         layout[i+3][j] == currentValue){
+                    layout[i  ][j] = 3;
+                    layout[i+1][j] = 3;
+                    layout[i+2][j] = 3;
+                    layout[i+3][j] = 3;
+                    displayBoard();
                     return true;
                 }
             }
         }
         // horizontal -
-        for (int[] row : layout) {
+        for (int i = 0; i < layout.length; i++) {
             for (int j = 0; j < layout[0].length-3; j++) {
-                if (row[j] == currentValue &&
-                        row[j+1] == currentValue &&
-                        row[j+2] == currentValue &&
-                        row[j+3] == currentValue){
+                if (layout[i][j] == currentValue &&
+                        layout[i][j+1] == currentValue &&
+                        layout[i][j+2] == currentValue &&
+                        layout[i][j+3] == currentValue){
+                    layout[i][j  ] = 3;
+                    layout[i][j+1] = 3;
+                    layout[i][j+2] = 3;
+                    layout[i][j+3] = 3;
+                    displayBoard();
                     return true;
                 };
             }
@@ -93,6 +106,11 @@ public class Board {
                         layout[i+1][j+1] == currentValue &&
                         layout[i+2][j+2] == currentValue &&
                         layout[i+3][j+3] == currentValue){
+                    layout[i  ][j  ] = 3;
+                    layout[i+1][j+1] = 3;
+                    layout[i+2][j+2] = 3;
+                    layout[i+3][j+3] = 3;
+                    displayBoard();
                     return true;
                 };
             }
@@ -104,6 +122,11 @@ public class Board {
                         layout[i+1][j-1] == currentValue &&
                         layout[i+2][j-2] == currentValue &&
                         layout[i+3][j-3] == currentValue){
+                    layout[i  ][j  ] = 3;
+                    layout[i+1][j-1] = 3;
+                    layout[i+2][j-2] = 3;
+                    layout[i+3][j-3] = 3;
+                    displayBoard();
                     return true;
                 };
             }
